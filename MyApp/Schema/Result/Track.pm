@@ -18,6 +18,9 @@ __PACKAGE__->add_columns(
   title => {
     data_type => 'text',
   },
+  length => {
+    data_type => 'integer'
+  },
 );
 
 __PACKAGE__->set_primary_key('trackid');
