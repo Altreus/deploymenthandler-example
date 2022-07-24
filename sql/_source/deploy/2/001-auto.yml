@@ -1,0 +1,255 @@
+---
+schema:
+  procedures: {}
+  tables:
+    artist:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - artistid
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - name
+          match_type: ''
+          name: artist_name
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+      fields:
+        artistid:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: artistid
+          order: 1
+          size:
+            - 0
+        name:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: name
+          order: 2
+          size:
+            - 0
+      indices: []
+      name: artist
+      options: []
+      order: 1
+    cd:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - cdid
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - title
+            - artistid
+          match_type: ''
+          name: cd_title_artistid
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+        - deferrable: 1
+          expression: ''
+          fields:
+            - artistid
+          match_type: ''
+          name: cd_fk_artistid
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - artistid
+          reference_table: artist
+          type: FOREIGN KEY
+      fields:
+        artistid:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: artistid
+          order: 2
+          size:
+            - 0
+        cdid:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: cdid
+          order: 1
+          size:
+            - 0
+        title:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: title
+          order: 3
+          size:
+            - 0
+        year:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: year
+          order: 4
+          size:
+            - 0
+      indices:
+        - fields:
+            - artistid
+          name: cd_idx_artistid
+          options: []
+          type: NORMAL
+      name: cd
+      options: []
+      order: 2
+    track:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - trackid
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - title
+            - cdid
+          match_type: ''
+          name: track_title_cdid
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+        - deferrable: 1
+          expression: ''
+          fields:
+            - cdid
+          match_type: ''
+          name: track_fk_cdid
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - cdid
+          reference_table: cd
+          type: FOREIGN KEY
+      fields:
+        cdid:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: cdid
+          order: 2
+          size:
+            - 0
+        length:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: length
+          order: 4
+          size:
+            - 0
+        title:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: title
+          order: 3
+          size:
+            - 0
+        trackid:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: trackid
+          order: 1
+          size:
+            - 0
+      indices:
+        - fields:
+            - cdid
+          name: track_idx_cdid
+          options: []
+          type: NORMAL
+      name: track
+      options: []
+      order: 3
+  triggers: {}
+  views: {}
+translator:
+  add_drop_table: 0
+  filename: ~
+  no_comments: 0
+  parser_args:
+    sources:
+      - Artist
+      - Cd
+      - Track
+  parser_type: SQL::Translator::Parser::DBIx::Class
+  producer_args: {}
+  producer_type: SQL::Translator::Producer::YAML
+  show_warnings: 0
+  trace: 0
+  version: 1.62
