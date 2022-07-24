@@ -11,5 +11,9 @@ my $dh = DBIx::Class::DeploymentHandler->new(
     to_version => MyApp::Schema->schema_version,
 );
 
-$dh->prepare_install;
-$dh->install;
+#$dh->prepare_install;
+#$dh->install;
+
+$dh->prepare_deploy;
+$dh->prepare_upgrade;
+$dh->upgrade;
